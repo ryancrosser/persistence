@@ -1,0 +1,65 @@
+{
+    "excludeFiles": ["node_modules/**", "bower_components/**"],
+
+    "requireCurlyBraces": [
+        "if",
+        "else",
+        "for",
+        "while",
+        "do",
+        "try",
+        "catch"
+    ],
+    "requireOperatorBeforeLineBreak": true,
+    "requireCamelCaseOrUpperCaseIdentifiers": true,
+    "maximumLineLength": {
+      "value": 100,
+      "allowComments": true,
+      "allowRegex": true
+    },
+    "validateIndentation": 4,
+    "validateQuoteMarks": "'",
+
+    "disallowMultipleLineStrings": true,
+    "disallowMixedSpacesAndTabs": true,
+    "disallowTrailingWhitespace": true,
+    "disallowSpaceAfterPrefixUnaryOperators": true,
+    "disallowMultipleVarDecl": null,
+
+    "requireSpaceAfterKeywords": [
+      "else",
+      "do",
+      "try"
+    ],
+    "requireSpaceBeforeBinaryOperators": [
+        "=", "+=", "-=", "*=", "/=", "%=", "<<=", ">>=", ">>>=",
+        "&=", "|=", "^=", "+=",
+
+        "+", "-", "*", "/", "%", "<<", ">>", ">>>", "&",
+        "|", "^", "&&", "||", "===", "==", ">=",
+        "<=", "<", ">", "!=", "!=="
+    ],
+    "requireSpaceAfterBinaryOperators": true,
+    "requireSpacesInConditionalExpression": true,
+    "requireSpaceBeforeBlockStatements": null,
+    "requireLineFeedAtFileEnd": true,
+    "disallowSpacesInsideObjectBrackets": "all",
+    "disallowSpacesInsideArrayBrackets": "all",
+    "disallowSpacesInsideParentheses": null,
+
+    "validateJSDoc": {
+        "checkParamNames": true,
+        "requireParamTypes": true
+    },
+
+    "disallowMultipleLineBreaks": true,
+
+    "disallowCommaBeforeLineBreak": null,
+    "disallowDanglingUnderscores": null,
+    "disallowEmptyBlocks": null,
+    "disallowTrailingComma": true,
+    "requireCommaBeforeLineBreak": true,
+    "requireDotNotation": null,
+    "requireMultipleVarDecl": null,
+    "requireParenthesesAroundIIFE": true
+}
