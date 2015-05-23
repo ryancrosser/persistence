@@ -9,10 +9,10 @@ var logger = require('morgan');
 
 var four0four = require('./utils/404')();
 
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 5000;
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+var port = process.env.OPENSHIFT_NODEJS_PORT || 5000;
+var ipAddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
-app.set('port', server_port);
+app.set('port', port);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(logger('dev'));
@@ -29,8 +29,16 @@ console.log('About to crank up node');
 console.log('PORT=' + app.get('port'));
 console.log('NODE_ENV=' + app.get('env'));
 
-app.listen(server_port, server_ip_address, function() {
-    console.log("Listening on " + server_ip_address + ", server_port " + app.get('port'));
+
+// preparing MongoDB
+var mongodbConnectionString = 'mongodb://127.0.0.1:27017/' + dbName;
+//take advantage of openshift env vars when available:
+if(process.env.OPENSHIFT_MONGODB_DB_URL){
+    mongodbConnectionString = process.env.OPENSHIFT_MONGODB_DB_URL + dbName;
+}
+
+app.listen(port, ipAddress, function() {
+    console.log('Listening on ' + ipAddress + ', port ' + app.get('port'));
     console.log('env = ' + app.get('env') + '\n' +
                 '__dirname = ' + __dirname + '\n' +
                 'process.cwd = ' + process.cwd());

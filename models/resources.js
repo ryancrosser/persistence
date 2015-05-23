@@ -6,7 +6,6 @@ var fs = require('fs');
 var moment = require('moment');
 var path = require('path');
 var Q = require('q');
-var sqlite3 = require('sqlite3').verbose();
 
 var RESOURCES_LOCATION = './data/resources/';
 
@@ -57,7 +56,6 @@ module.exports = function(app) {
         } catch(e) {
 
         }
-
     }
 
     function create(record) {
@@ -209,10 +207,6 @@ module.exports = function(app) {
         return deferred.promise;
     }
 
-    function prepareFileName(filename) {
-        return filename.replace(/\s+/g, '_');
-    }
-
     function getIdByName(name) {
         console.log(name);
         var deferred = Q.defer();
@@ -230,8 +224,6 @@ module.exports = function(app) {
 
     function buildDependencies() {
         var count = 0;
-
-        var re;
 
         read().then(function(results) {
 
@@ -278,11 +270,7 @@ module.exports = function(app) {
         function arrMatch(arr, term) {
             arr = arr.filter(function(file, index) {
                 var pattern = new RegExp(term, 'g');
-                if(file.match(pattern)) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return file.match(pattern);
             });
 
             return arr.length > 0;

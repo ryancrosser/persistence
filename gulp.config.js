@@ -25,7 +25,7 @@ module.exports = function() {
          * NPM files
          */
         packages: [
-            './package.json',
+            './package.json'
         ],
 
         /**
