@@ -1,8 +1,10 @@
 var _ = require('lodash');
+var dir = require('node-dir');
 var router = require('express').Router();
-var four0four = require('./utils/404')();
-var data = require('./data/data');
-var resources = require('./models/resources')();
+
+var data = require('../data/data');
+var four0four = require('../utils/404')();
+var resources = require('../lib/resources')();
 
 router.post('/resources', create);
 router.get('/resources', read);
@@ -36,7 +38,6 @@ function read(req, res, next) {
         if(typeof req.query.name !== 'undefined') {
             resources.read(id, true).then(function(record) {
                 //res.type(record.contentType).status(200).json(record.data);
-                console.log(record.filepath);
                 res.type(record.contentType).status(200).sendFile(record.filepath, {root: './'});
             }, function(err) {
                 res.status(400).json(err);
@@ -55,8 +56,6 @@ function read(req, res, next) {
             res.status(400).json(err);
         });
     }
-
-    //next();
 }
 
 function update(req, res, next) {
